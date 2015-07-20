@@ -1,7 +1,54 @@
+.cross {
+	background-image: url("../images/cruz_100.png");
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+.circle {
+	background-image: url("../images/circulo_100.png");
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+section:hover {
+	cursor: pointer;
+	cursor: hand;
+}
+
+.height-fixed {
+	height: 120px;
+	border: 1px solid black;
+}
+
+.table-container {
+	margin: 50px auto;
+	width: 600px;
+}
+
 #MainCtrl {
-  background-image: url("../images/pizarron1.png");
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-position: center;
-  height: 600px;
+	position:absolute;
+	margin: 0 auto;
+}
+
+#RegisterCtrl {
+	position:absolute;
+	height:100%;
+	width:100%;
+	background: url("../images/cat_wallpaper.jpg") no-repeat center center fixed;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+}
+
+.panel-default {
+	opacity: 0.9;
+	margin-top:30px;
+}
+.form-group.last {
+	margin-bottom:0px;
+}
+
+.form-username {
+	margin-top: 20%;
 }

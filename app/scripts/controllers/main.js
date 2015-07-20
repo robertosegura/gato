@@ -8,12 +8,97 @@
  * Controller of the gameApp
  */
 angular.module('gameApp')
-  .controller('MainCtrl', [function () {
+  .controller('MainCtrl', ['sharedProperties', function (sharedProperties) {
   	var main = this;
 
+    //var registerCtrlViewModel = $controller('RegisterCtrl');
+
+    var objectValue = sharedProperties.getObjectregisterCtrl();
+
+
     main.places = [
-					{pos: 1, type: ''}, {pos: 2, type: ''}, {pos: 3, type: ''},
-                    {pos: 4, type: ''}, {pos: 5, type: ''}, {pos: 6, type: ''},
-                    {pos: 7, type: ''}, {pos: 8, type: ''}, {pos: 9, type: ''}
+                    {pos: 1, type: null},
+                    {pos: 2, type: null},
+                    {pos: 3, type: null},
+                    {pos: 4, type: null},
+                    {pos: 5, type: null},
+                    {pos: 6, type: null},
+                    {pos: 7, type: null},
+                    {pos: 8, type: null},
+                    {pos: 9, type: null}
                    ];
+
+    main.users       = {}
+    main.currentUser = {};
+    main.currentType = 'cross';
+
+    main.winners = [[1,2,3], [4,5,6], [7,8,9], [1,4,7], [1,5,9], [2,5,8], [3,6,9], [3,5,7]];
+
+    main.addMove = function(coordinate){
+
+      if(!main.currentUser.winner){
+        if(!coordinate.type){
+          coordinate.type = main.currentType;
+          main.setType();
+          main.verifyWinner(coordinate);
+        }else{
+          alert('This block already contains a value');
+        }
+      }else{
+        alert('Sorry the game is finished');
+      }
+
+    }
+
+
+    main.setType = function(){
+      main.currentType = main.currentType == 'cross' ? 'circle' : 'cross';
+    }
+
+    main.verifyWinner = function(coordinate){
+      var arrayCoordenadas = [];
+      var count = 0;
+
+      for(var k in cat.coordenadas){
+        if(cat.coordenadas[k].type == coordinate.type){
+          arrayCoordenadas.push(main.place[k].position);
+        }
+      }
+
+      for(var i in cat.winners){
+        for(var j in cat.winners[i]){
+
+          var count = 0;
+
+          for(var l in arrayCoordenadas){
+            if(arrayCoordenadas.indexOf(arrayCoordenadas[l])){
+              count++;
+              //console.log(count);
+              if(count == 3){
+                main.currentUser.winner = true;
+                alert('Felicidades ganaste el juego');
+                return;
+              }
+            }
+          }
+          //console.log(cat.winners[i][j]);
+        }
+      }
+      //console.log(count);
+    }
+
+    main.initConnection = function(){
+      var socket = io('http://localhost:3000');
+
+      socket.on('connect', function(){
+          console.log('connected');
+      });
+
+      socket.emit('add user', {username: 'rob'});
+
+      socket.on('users list', function(data){
+        console.log(data);
+      });
+    }
+
   }]);

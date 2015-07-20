@@ -1,3 +1,8 @@
 <div ng-controller="MainCtrl as main" id="MainCtrl">
-	
+	<div>
+		<p>Name: {{ main.objectValue.username }}</p>
+	</div>
+	<span ng-repeat="place in main.places">
+	  <section class="height-fixed col-md-4" ng-class="place.type" ng-click="main.addMove(place);"></section>
+	</span>
 </div>
