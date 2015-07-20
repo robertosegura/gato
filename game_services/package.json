@@ -1,0 +1,20 @@
+{
+  "name": "gato",
+  "version": "0.0.0",
+  "description": "Juego del gato en multijugador",
+  "main": "index.js",
+  "author": "Roberto Segura",
+  "private": true,
+  "license": "BSD",
+  "dependencies": {
+    "express": "3.4.8",
+    "engine.io": "automattic/engine.io#ab2bd0",
+    "socket.io-parser": "2.2.4",
+    "socket.io-adapter": "automattic/socket.io-adapter#de5cba",
+    "has-binary": "0.1.6",
+    "debug": "2.1.3"
+  },
+  "devDependencies": {
+    "socket.io": "^1.3.6"
+  }
+}
