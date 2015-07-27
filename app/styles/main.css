@@ -25,12 +25,12 @@ section:hover {
 	width: 600px;
 }
 
-#MainCtrl {
+#gameScreen {
 	position:absolute;
 	margin: 0 auto;
 }
 
-#RegisterCtrl {
+#registerScreen {
 	position:absolute;
 	height:100%;
 	width:100%;
@@ -39,6 +39,14 @@ section:hover {
 	-moz-background-size: cover;
 	-o-background-size: cover;
 	background-size: cover;
+}
+
+.showSection{
+	display: inline-block;
+}
+
+.hideSection {
+	display: none;
 }
 
 .panel-default {

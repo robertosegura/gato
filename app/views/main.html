@@ -1,8 +1,41 @@
 <div ng-controller="MainCtrl as main" id="MainCtrl">
-	<div>
-		<p>Name: {{ main.objectValue.username }}</p>
-	</div>
-	<span ng-repeat="place in main.places">
-	  <section class="height-fixed col-md-4" ng-class="place.type" ng-click="main.addMove(place);"></section>
-	</span>
+    <div id="registerScreen" ng-class="main.user.isValid ? 'hideSection' : 'showSection'">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4"></div>
+                <div class="col-md-4 form-username">
+                    <div class="panel panel-default">
+                        <div class="panel-heading"> <strong class="">User registration</strong>
+                        </div>
+                            <div class="panel-body">
+                                <form class="form-horizontal" role="form">
+                                    <div class="form-group">
+                                        <div class="col-sm-9">
+                                            <div class="input-group">
+                                                <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></span>
+                                                <input ng-model="main.user.username" type="text" class="form-control" placeholder="Username" aria-describedby="basic-addon1">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group last">
+                                        <div class="col-sm-offset-9 col-sm-9">
+                                            <button data-ng-click="main.addUser();" class="btn btn-success btn-sm">Join</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4"></div>
+            </div>
+    </div>
+    <div  id="gameScreen" ng-class="main.user.isValid ? 'showSection' : 'hideSection'">
+    	<div>
+    		<p>Name: {{ main.objectValue.username }}</p>
+    	</div>
+    	<span ng-repeat="place in main.places">
+    	  <section class="height-fixed col-md-4" ng-class="place.type" ng-click="main.addMove(place);"></section>
+    	</span>
+    </div>
 </div>

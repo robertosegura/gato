@@ -8,15 +8,20 @@
  * Controller of the gameApp
  */
 angular.module('gameApp')
-  .controller('MainCtrl', ['sharedProperties', function (sharedProperties) {
+  .controller('MainCtrl', [function () {
+    
+    //Initialize a variable with this instance
   	var main = this;
-
-    //var registerCtrlViewModel = $controller('RegisterCtrl');
-
-    var objectValue = sharedProperties.getObjectregisterCtrl();
-
-
-    main.places = [
+    
+    //public variables
+    /* user.username
+    *  user.status -> it could be 'winner' 'looser' 'playing'
+    *  user.isValid 
+    *  user.type -> it determines the type of movement 'cross' 'circle'
+    */
+    main.user       = new Object;
+    
+    main.places = [ 
                     {pos: 1, type: null},
                     {pos: 2, type: null},
                     {pos: 3, type: null},
@@ -28,15 +33,32 @@ angular.module('gameApp')
                     {pos: 9, type: null}
                    ];
 
-    main.users       = {}
-    main.currentUser = {};
-    main.currentType = 'cross';
+    var users       = {}
+    var currentType = 'cross';
+    var winners     = [[1,2,3], [4,5,6], [7,8,9], [1,4,7], [1,5,9], [2,5,8], [3,6,9], [3,5,7]];
+    
+    
+    main.addUser = function(){
+      if(!main.user.isValid){
+        
+      }
+    }
+    
+    main.clearFields = function(){
+      //Just quit the winner status
+      main.user.status = 'playing';
+      
+      //Reset the table with null type of movements
+      for (var i = 0; i < main.places.length; i++) {
+        main.places[i].type = null;
+      }
+    }
 
-    main.winners = [[1,2,3], [4,5,6], [7,8,9], [1,4,7], [1,5,9], [2,5,8], [3,6,9], [3,5,7]];
+
 
     main.addMove = function(coordinate){
 
-      if(!main.currentUser.winner){
+      if(!main.user.winner){
         if(!coordinate.type){
           coordinate.type = main.currentType;
           main.setType();
@@ -54,7 +76,7 @@ angular.module('gameApp')
     main.setType = function(){
       main.currentType = main.currentType == 'cross' ? 'circle' : 'cross';
     }
-
+/*
     main.verifyWinner = function(coordinate){
       var arrayCoordenadas = [];
       var count = 0;
@@ -86,7 +108,7 @@ angular.module('gameApp')
       }
       //console.log(count);
     }
-
+*/
     main.initConnection = function(){
       var socket = io('http://localhost:3000');
 
